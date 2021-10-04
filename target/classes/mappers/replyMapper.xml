@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="replyMapper">
+	
+	<select id="readReply_qna" resultType="com.team.shop.model.ReplyVO">
+    	SELECT qna_rno, qna, writer, regdate FROM qna_reply WHERE product_id = #{product_id}
+	</select>
+	
+	<select id="readReply_review" resultType="com.team.shop.model.ReplyVO">
+    	SELECT review_rno, review, writer, regdate FROM review_reply WHERE product_id = #{product_id}
+	</select>
+	
+	<insert id="writeReply_qna">
+		INSERT INTO qna_reply(product_id, qna_rno, qna, writer) 
+		VALUES(#{product_id}, qna_reply_seq.NEXTVAL, #{qna}, #{writer})
+	</insert>
+	
+	<insert id="writeReply_review">
+		INSERT INTO review_reply(product_id, review_rno, review, writer) 
+		VALUES(#{product_id}, review_reply_seq.NEXTVAL, #{review}, #{writer})
+	</insert>
+	
+</mapper>
